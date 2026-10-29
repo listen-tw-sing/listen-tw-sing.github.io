@@ -1,0 +1,483 @@
+/* 聽！台灣在唱歌 — colours taken from the show's logo and season-one poster */
+:root {
+  --rice: #F0B23E;      /* poster yellow */
+  --rose: #C8436A;      /* logo lettering */
+  --sea: #2471B0;       /* logo outline */
+  --tea: #2F7D4D;       /* tea fields, 走唱系列 */
+  --ink: #1E2B45;       /* text: navy, never black */
+  --paper: #FFFFFF;
+  --sea-pale: #E8F1F8;
+  --line: rgba(30, 43, 69, .16);
+
+  --font-hand: "LXGW WenKai TC", "Kaiti TC", "BiauKai", serif;
+  --font-body: "Noto Sans TC", "PingFang TC", "Heiti TC", sans-serif;
+  --font-serif: "Noto Serif TC", "Songti TC", serif;
+  --wrap: 1120px;
+  --gutter: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 17px/1.8 var(--font-body);
+  -webkit-text-size-adjust: 100%;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--sea); text-underline-offset: 3px; }
+a:hover { color: var(--rose); }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; border-radius: 2px; }
+p { margin: 0 0 1em; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+@media (min-width: 720px) { :root { --gutter: 32px; } }
+
+.section-title {
+  font: 700 clamp(1.9rem, 4.2vw, 2.75rem)/1.25 var(--font-hand);
+  margin: 0 0 .5em;
+  letter-spacing: .02em;
+}
+.lede { font-size: 1.125rem; max-width: 36em; }
+
+/* buttons */
+.btn {
+  display: inline-block;
+  padding: .55em 1.2em;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 2px solid var(--ink);
+  line-height: 1.4;
+}
+.btn--solid { background: var(--ink); color: var(--paper); }
+.btn--solid:hover { background: var(--rose); border-color: var(--rose); color: var(--paper); }
+.btn--ghost { background: transparent; color: var(--ink); }
+.btn--ghost:hover { background: var(--paper); color: var(--ink); }
+.btn--small { font-size: .875rem; padding: .3em .9em; border-width: 1.5px; color: var(--ink); background: var(--paper); }
+.btn--small:hover { background: var(--ink); color: var(--paper); }
+
+/* top bar */
+.top {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 16px;
+  padding: 8px var(--gutter);
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.top__home { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--ink);
+  font: 700 1.125rem/1 var(--font-hand); white-space: nowrap; }
+.top__nav { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+.top__nav::-webkit-scrollbar { display: none; }
+.top__nav a { padding: 6px 10px; white-space: nowrap; color: var(--ink); text-decoration: none; font-size: .9375rem; border-radius: 6px; }
+.top__nav a:hover { background: var(--sea-pale); }
+@media (max-width: 640px) { .top__home span { display: none; } }
+
+/* hero: poster-yellow panel beside the composite (tools/hero/). The panel carries the same paper grain,
+   at the same scale as the image's, so panel and picture read as one sheet. */
+.hero { display: grid; background: var(--rice) url(../img/paper.jpg) 0 0 / auto 100% repeat-x; overflow: hidden; }
+.hero__pic { display: block; min-width: 0; }
+.hero__photo { width: 100%; height: 56vw; max-height: 520px; object-fit: cover; object-position: 50% 70%; }
+.hero__inner { padding: 28px var(--gutter) 40px; }
+.hero__logo { margin: 0 0 12px; width: min(300px, 70vw); }
+.hero__line { font: 700 clamp(1.25rem, 2.2vw, 1.75rem)/1.6 var(--font-hand); margin-bottom: 24px; }
+.hero__line span { display: inline-block; white-space: nowrap; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 0; }
+@media (min-width: 900px) {
+  .hero { grid-template-columns: minmax(380px, 5fr) 7fr; min-height: min(86vh, 760px); }
+  /* the composite's sky is the panel's yellow: fade its left edge into the panel */
+  .hero__pic { order: 2; position: relative; }        /* the row height comes from the panel, not the image */
+  .hero__photo { position: absolute; inset: 0; height: 100%; max-height: none;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 7%); mask-image: linear-gradient(to right, transparent, #000 7%); }
+  .hero__inner { order: 1; align-self: center; padding: 48px 40px 48px clamp(32px, calc((100vw - var(--wrap)) / 2 + 32px), 18vw); }
+  .hero__logo { width: min(400px, 100%); }
+}
+
+/* what the show is: one large serif statement, led by a label in the poster's wide-flat name-tag type */
+.statement { background: var(--paper); padding: clamp(56px, 9vw, 120px) 0 clamp(48px, 7vw, 96px); }
+.statement__text { font: 500 clamp(1.5rem, 3.1vw, 2.5rem)/1.65 var(--font-serif); letter-spacing: .02em; max-width: 25em; margin: 0 0 .9em; }
+.statement__text--small { font-size: clamp(1.125rem, 1.8vw, 1.4rem); color: rgba(30, 43, 69, .78); max-width: 34em; margin: 0; }
+.flat {
+  display: inline-block; margin-right: .3em;
+  font: 900 1em/1 var(--font-body); letter-spacing: .06em; color: var(--rose);
+  transform: scaleY(.68); transform-origin: 50% 75%;
+}
+
+/* awards: navy band, the Golden Bell mark in thin gold line, one ruled row per award */
+.award { background: var(--ink); color: var(--paper); padding: clamp(56px, 8vw, 104px) 0; }
+.award__inner { display: grid; gap: 40px; align-items: center; }
+@media (min-width: 900px) { .award__inner { grid-template-columns: minmax(300px, 4fr) 7fr; gap: 64px; } }
+.award__emblem { display: grid; justify-items: center; gap: 18px; color: #E6C98E; }
+.award__emblem-mark { width: min(300px, 62vw); height: auto; }
+.award__word { width: min(240px, 50vw); height: auto; }
+.award__title { font: 700 clamp(1.5rem, 2.6vw, 2rem)/1.3 var(--font-hand); color: var(--rice); margin: 0 0 18px; }
+.award__rows li {
+  display: grid; grid-template-columns: 3.6em 1fr auto; gap: 2px 20px; align-items: baseline;
+  padding: 16px 0; border-top: 1px solid rgba(255, 255, 255, .2);
+}
+.award__rows li:last-child { border-bottom: 1px solid rgba(255, 255, 255, .2); }
+.award__year { grid-row: span 2; font-size: .875rem; color: rgba(255, 255, 255, .58); font-variant-numeric: tabular-nums; }
+.award__name { font-weight: 700; font-size: 1.125rem; }
+.award__cat { grid-column: 2; font-size: .9375rem; color: rgba(255, 255, 255, .76); }
+.award__result { grid-column: 3; grid-row: 1; font-size: .8125rem; line-height: 1.6; padding: 0 10px; border: 1px solid rgba(255, 255, 255, .45); border-radius: 999px; }
+.award__result--win { background: var(--rice); border-color: var(--rice); color: var(--ink); font-weight: 700; }
+
+/* every song, run on, with the episode it was sung in raised beside it; songs.js lights them as you scroll */
+.songs { background: var(--paper); padding: clamp(64px, 10vw, 128px) 0; }
+.songs__head { font: 700 clamp(2.6rem, 8.5vw, 6.5rem)/1.05 var(--font-hand); letter-spacing: .02em; margin: 0 0 .35em; }
+.songs__note { font-size: .9375rem; color: rgba(30, 43, 69, .72); margin-bottom: clamp(28px, 4vw, 48px); }
+.songs__key { font-weight: 700; }
+.songs__key--s1 { color: var(--sea); }
+.songs__key--walk { color: var(--tea); }
+.songs__list { font: 700 clamp(1.6rem, 3.9vw, 3rem)/1.45 var(--font-hand); }
+.songs__list li { display: inline; }
+.songs__list li + li::before { content: " / "; font-weight: 400; color: rgba(30, 43, 69, .28); }
+.songs__list a { white-space: nowrap; color: var(--ink); text-decoration: none; transition: opacity .6s cubic-bezier(.16, 1, .3, 1), color .2s; }
+.songs__list a:hover, .songs__list a:focus-visible { color: var(--rose); }
+.songs__ep { font: 700 .36em/1 var(--font-body); vertical-align: super; margin-left: .12em; letter-spacing: .03em; }
+.songs__ep + .songs__ep::before { content: "·"; color: rgba(30, 43, 69, .4); }
+.songs__ep--s1 { color: var(--sea); }
+.songs__ep--walk { color: var(--tea); }
+@media (prefers-reduced-motion: no-preference) {
+  .songs__list.is-dim li a { opacity: .16; }
+  .songs__list.is-dim li.is-lit a { opacity: 1; }
+}
+
+/* the song map */
+.map { background: var(--rice); padding: 56px 0 64px; }
+.map__legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 24px; }
+.chip {
+  font: 500 .9375rem/1 var(--font-body);
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 999px;
+  border: 2px solid var(--ink); background: var(--paper); color: var(--ink); cursor: pointer;
+}
+.chip::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--c); border: 2px solid var(--c); }
+.chip--s1 { --c: var(--sea); }
+.chip--walk { --c: var(--tea); }
+.chip[aria-pressed="false"] { background: transparent; opacity: .55; text-decoration: line-through; }
+
+.map__body { display: grid; gap: 24px; }
+@media (min-width: 900px) { .map__body { grid-template-columns: 7fr 5fr; align-items: start; } }
+.map__svg { width: 100%; height: auto; max-height: 82vh; display: block; margin: 0 auto; }
+.map__land { fill: var(--paper); stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
+.map__borders { fill: none; stroke: var(--ink); stroke-opacity: .18; stroke-width: 1; }
+.pin circle { stroke: var(--paper); stroke-width: 3; cursor: pointer; transition: r .15s ease; }
+.pin--s1 circle { fill: var(--sea); }
+.pin--walk circle { fill: var(--tea); }
+.pin:hover circle, .pin:focus-visible circle { r: 12; }
+.pin.is-active circle { r: 13; stroke: var(--ink); stroke-width: 4; }
+.pin:focus { outline: none; }
+.pin.is-hidden { display: none; }
+@media (prefers-reduced-motion: reduce) { .pin circle { transition: none; } }
+
+.panel {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 24px;
+}
+@media (min-width: 900px) { .panel { position: sticky; top: 88px; } }
+.panel__season { font-weight: 700; font-size: .9375rem; margin-bottom: 4px; }
+.panel__season--s1 { color: var(--sea); }
+.panel__season--walk { color: var(--tea); }
+.panel__place { font: 700 1.75rem/1.3 var(--font-hand); margin: 0 0 12px; }
+.panel__songs li { font: 700 1.375rem/1.5 var(--font-hand); }
+.panel__songs { margin-bottom: 12px; }
+.panel__guest { font-weight: 500; }
+.panel__blurb { font-size: .9375rem; color: rgba(30, 43, 69, .8); }
+.panel .ep__watch { margin: 0; }
+
+/* map motion: route */
+.route__ink { fill: none; stroke: #fff; stroke-width: 12; stroke-linecap: round; }
+.route__line { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 1 7; }
+.route__line--s1 { stroke: var(--sea); }
+.route__line--walk { stroke: var(--tea); }
+.route__line.is-hidden { display: none; }
+.pin circle { transform-box: fill-box; transform-origin: center; }
+.pin.is-waiting circle { transform: scale(0); }
+
+/* map motion: ripple */
+.ring { fill: none; stroke-width: 2.5; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; pointer-events: none; }
+.ring--s1 { stroke: var(--sea); }
+.ring--walk { stroke: var(--tea); }
+.halo { transform-box: fill-box; transform-origin: center; pointer-events: none; opacity: .3; transform: scale(1.8); transition: opacity .3s; }
+.halo--s1 { fill: var(--sea); }
+.halo--walk { fill: var(--tea); }
+
+/* map motion: songbook page turn */
+.panel { view-transition-name: panel; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .pin.is-popped circle { animation: pop .55s cubic-bezier(.3, 1.7, .5, 1) both; }
+  @keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
+
+  .ring { animation: ring 1.5s cubic-bezier(.1, .6, .3, 1) both; }
+  @keyframes ring { from { transform: scale(1); opacity: .8; } to { transform: scale(5); opacity: 0; } }
+  .halo { animation: halo 2.6s ease-in-out infinite; }
+  @keyframes halo { 0%, 100% { transform: scale(1.5); opacity: .35; } 50% { transform: scale(2.3); opacity: .12; } }
+
+  ::view-transition-old(panel) { animation: page-out .26s ease-in both; }
+  ::view-transition-new(panel) { animation: page-in .45s cubic-bezier(.2, .8, .2, 1) both; }
+  @keyframes page-out { to { opacity: 0; transform: translateY(-12px) rotate(-1.2deg); } }
+  @keyframes page-in { from { opacity: 0; transform: translateY(16px) rotate(1.2deg); } }
+
+  .panel.is-turned .panel__songs li { animation: line .5s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--i) * 110ms + 180ms); }
+  @keyframes line { from { opacity: 0; transform: translateX(-12px); } }
+}
+
+/* seasons */
+.season { padding: 64px 0; }
+.season--s1 { background: var(--sea-pale); }
+.season__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 24px; }
+.season__status { color: var(--rose); font-weight: 700; }
+.season__intro { max-width: 40em; }
+/* season two: four stills in a collage; column widths keep every photo's own shape
+   (portrait | two landscapes stacked | portrait), so nobody's head is cropped */
+.collage { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; margin-top: 32px; align-items: start; }
+.collage img { width: 100%; height: auto; border-radius: 8px; }
+.collage__a { grid-area: 1 / 1; } .collage__d { grid-area: 1 / 2; }
+.collage__b { grid-area: 2 / 1; } .collage__c { grid-area: 2 / 2; }
+@media (min-width: 720px) {
+  .collage { grid-template-columns: 1fr .889fr 1fr; gap: 12px; }
+  .collage__a { grid-area: 1 / 1 / 3 / 2; } .collage__d { grid-area: 1 / 3 / 3 / 4; }
+  .collage__b { grid-area: 1 / 2; } .collage__c { grid-area: 2 / 2; }
+}
+.season__split { display: grid; gap: 32px; align-items: center; margin-bottom: 40px; }
+.season__split > div { max-width: 36em; }
+.season__poster { width: min(320px, 70%); border-radius: 6px; }
+.season__photo { border-radius: 10px; }
+@media (min-width: 800px) {
+  .season__split { grid-template-columns: 320px 1fr; }
+  .season__poster { width: 100%; }
+  .season__split--wide { grid-template-columns: 1fr 1.2fr; }
+}
+
+/* each photo keeps its own shape (portrait next to landscape) so nobody loses their head */
+.strip { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 24px 0 40px; padding-bottom: 8px; }
+.strip li { flex: none; scroll-snap-align: start; }
+.strip img { height: clamp(200px, 20vw, 240px); width: auto; border-radius: 8px; }
+
+.eps { display: grid; gap: 32px 24px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.ep__thumb img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; margin-bottom: 10px; background: var(--line); }
+.ep__num { font: 700 1rem/1 var(--font-hand); margin: 0 0 4px; }
+.season--s1 .ep__num { color: var(--sea); }
+.season--walk .ep__num { color: var(--tea); }
+.ep__place { font: 700 1.25rem/1.4 var(--font-hand); margin: 0 0 8px;
+  text-decoration: underline; text-decoration-color: var(--rose); text-decoration-thickness: 3px; text-underline-offset: 6px; }
+.ep__songs { font-size: .9375rem; margin-bottom: 6px; }
+.ep__songs li { display: inline; }
+.ep__guest { font-size: .9375rem; margin-bottom: 8px; }
+.ep__watch { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.ep:target { outline: 3px solid var(--rice); outline-offset: 8px; border-radius: 4px; }
+
+/* more */
+.more { padding: 56px 0; border-top: 1px solid var(--line); }
+.more__list { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.more__list a { font: 700 1.25rem/1.4 var(--font-hand); display: block; }
+.more__list span { font-size: .9375rem; }
+
+/* support */
+.support { background: var(--ink); color: var(--paper); padding: 64px 0; }
+.support__inner { display: grid; gap: 40px; }
+@media (min-width: 800px) { .support__inner { grid-template-columns: 3fr 2fr; } }
+.support p { max-width: 34em; }
+.support .btn--solid { background: var(--rice); border-color: var(--rice); color: var(--ink); }
+.support .btn--solid:hover { background: var(--paper); border-color: var(--paper); }
+.support__sub { font: 700 1.5rem/1.3 var(--font-hand); margin: 0 0 12px; }
+.social { display: flex; flex-wrap: wrap; gap: 10px; }
+.social a { display: inline-block; padding: 8px 16px; border: 1.5px solid rgba(255, 255, 255, .6); border-radius: 999px;
+  color: var(--paper); text-decoration: none; }
+.social a:hover { background: var(--paper); color: var(--ink); }
+.support :focus-visible { outline-color: var(--rice); }
+
+/* 先聽一首: one still, the title huge over it, the song playlist plays in place */
+.reel { position: relative; display: grid; place-items: end center; min-height: min(86vh, 760px); overflow: hidden;
+  background: var(--ink); color: var(--paper); text-align: center; }
+.reel__still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%;
+  filter: grayscale(1) contrast(1.06) brightness(.6); }
+/* the still is 七美's twin-heart stone weir with the hosts at its two edges; the text sits low over the sea */
+.reel::before { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, rgba(20, 30, 50, .72)); }
+.reel__inner { position: relative; padding: 48px var(--gutter) clamp(40px, 6vw, 72px); }
+.reel__title { font: 700 clamp(4.2rem, 17vw, 13rem)/1 var(--font-hand); letter-spacing: .04em; color: var(--rice); margin: 0 0 .12em;
+  text-decoration: underline; text-decoration-thickness: .05em; text-underline-offset: .16em; }
+.reel__line { font-size: clamp(1.125rem, 2vw, 1.5rem); margin-bottom: 28px; }
+.reel__play { display: inline-grid; place-items: center; width: 96px; height: 96px; border-radius: 50%; cursor: pointer;
+  border: 3px solid var(--rice); background: rgba(30, 43, 69, .35); color: var(--rice); transition: transform .3s, background .3s, color .3s; }
+.reel__play svg { width: 40px; height: 40px; fill: currentColor; margin-left: 6px; }
+.reel__play:hover, .reel__play:focus-visible { background: var(--rice); color: var(--ink); transform: scale(1.06); }
+.reel__play:focus-visible { outline-color: var(--paper); }
+.reel__alt { margin: 20px 0 0; font-size: .9375rem; }
+.reel__alt a { color: rgba(255, 255, 255, .86); }
+.reel__frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
+/* portrait screens: a cover crop keeps only the weir between the two hosts, so the still is shown whole
+   on top, fades into the navy, and the title overlaps its lower edge */
+@media (max-width: 719px), (max-aspect-ratio: 1/1) {
+  .reel { display: block; min-height: 0; }
+  .reel__still { position: relative; height: auto; aspect-ratio: 16 / 9; object-position: 50% 50%;
+    -webkit-mask-image: linear-gradient(#000 62%, transparent); mask-image: linear-gradient(#000 62%, transparent); }
+  .reel::before { display: none; }
+  .reel__inner { margin-top: calc(-.5 * clamp(4.2rem, 17vw, 13rem)); padding-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .reel__play { transition: none; } }
+
+/* footer: the show's name set edge to edge, credits under a rule */
+.foot { container-type: inline-size; background: var(--ink); color: rgba(255, 255, 255, .7); padding: 0 0 28px; overflow: hidden; }
+.foot__big { margin: 0; padding: clamp(32px, 6vw, 72px) var(--gutter) 0; text-align: center; white-space: nowrap;
+  font: 700 calc((100cqw - 2 * var(--gutter)) / 7.15)/1.1 var(--font-hand); color: var(--rice); }
+.foot__row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; font-size: .875rem;
+  margin-top: clamp(16px, 2vw, 28px); padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, .18); }
+.foot p { margin: 0; }
+.foot a { color: var(--rice); }
+
+/* 外景明信片 */
+.postcards { background: #1D5A8C; color: var(--paper); padding: 64px 0 80px; overflow-x: clip; }
+.postcards .lede { color: rgba(255, 255, 255, .88); }
+.postcards__grid { display: grid; gap: 44px 32px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); margin-top: 32px; }
+@media (min-width: 900px) { .postcards__grid > li:nth-child(3n+2) { margin-top: 32px; } .postcards__grid > li:nth-child(3n) { margin-top: 12px; } }
+.postcard__open {
+  position: relative; display: block; width: 100%; padding: 10px 10px 0; text-align: left;
+  font: inherit; color: var(--ink); background: var(--paper); border: 0; border-radius: 4px; cursor: pointer;
+  box-shadow: 0 12px 26px rgba(8, 24, 48, .35);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s;
+}
+.postcard__open:hover, .postcard__open:focus-visible { transform: rotate(0) translateY(-6px); box-shadow: 0 20px 36px rgba(8, 24, 48, .45); }
+.postcard__open:focus-visible { outline: 3px solid var(--rice); outline-offset: 4px; }
+.postcard__photo { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 2px; }
+.postcard__note { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 4px 14px; min-height: 86px; }
+.postcard__text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.postcard__place { font: 700 1.25rem/1.3 var(--font-hand); }
+.postcard__song { font: 700 .9375rem/1.3 var(--font-hand); color: var(--rose); }
+.postcard__post { position: relative; flex: none; width: 96px; height: 62px; }
+/* stamp with perforated edge: holes in the white frame show the card beneath */
+.postcard__stamp {
+  position: absolute; top: 0; right: 0; width: 50px; height: 60px;
+  background: radial-gradient(circle, transparent 2.6px, var(--rice) 3px) -4px -4px / 8px 8px;
+  transform: rotate(4deg);
+}
+.postcard__stamp span {
+  position: absolute; inset: 5px; display: grid; place-items: center;
+  background: var(--rice); border: 1px solid rgba(30, 43, 69, .35);
+  font: 700 .8125rem/1 var(--font-hand); color: var(--ink);
+}
+.postcard__mark {
+  position: absolute; top: 4px; left: 0; width: 58px; height: 58px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  border: 1.5px solid rgba(30, 43, 69, .7); color: rgba(30, 43, 69, .78);
+  font: 700 .6875rem/1.1 var(--font-hand); transform: rotate(-14deg);
+  mix-blend-mode: multiply;
+}
+.postcard__mark span:last-child { font-family: var(--font-body); font-weight: 500; font-size: .5rem; }
+@media (prefers-reduced-motion: reduce) { .postcard__open { transition: none; } }
+
+/* album viewer */
+.album { border: 0; padding: 0; background: transparent; width: min(1080px, calc(100vw - 24px)); max-width: none; max-height: calc(100vh - 24px); overflow: visible; }
+.album::backdrop { background: rgba(14, 26, 46, .84); }
+.album__frame { background: var(--paper); border: 2px solid var(--ink); border-radius: 14px; padding: 14px; box-shadow: 8px 8px 0 var(--rice); }
+.album__head { display: flex; justify-content: space-between; align-items: start; gap: 12px; margin-bottom: 10px; }
+.album__ep { margin: 0; font-size: .875rem; font-weight: 700; color: var(--sea); }
+.album__title { margin: 0; font: 700 1.5rem/1.3 var(--font-hand); }
+.album__close { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--ink); background: var(--paper); color: var(--ink); font-size: 1rem; cursor: pointer; }
+.album__close:hover { background: var(--ink); color: var(--paper); }
+.album__stage { position: relative; margin: 0; }
+.album__img { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; border-radius: 8px; background: var(--ink); view-transition-name: album-photo; touch-action: pan-y; max-height: calc(100vh - 220px); }
+.album__nav {
+  position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%;
+  border: 2px solid var(--ink); background: rgba(255, 255, 255, .92); color: var(--ink); font-size: 1.75rem; line-height: 1; cursor: pointer;
+}
+.album__nav--prev { left: 10px; }
+.album__nav--next { right: 10px; }
+.album__nav:hover { background: var(--rice); }
+.album__count { position: absolute; right: 12px; bottom: 12px; padding: 2px 10px; border-radius: 999px; background: rgba(30, 43, 69, .78); color: var(--paper); font-size: .8125rem; }
+.album__thumbs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 10px 0; }
+.album__thumbs button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 4px; }
+.album__thumbs img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; opacity: .55; transition: opacity .2s; }
+.album__thumbs button[aria-current="true"] img { opacity: 1; outline: 3px solid var(--rice); outline-offset: 1px; }
+.album__thumbs button:hover img { opacity: .9; }
+.album__watch { margin: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-group(album-photo) { animation-duration: .5s; animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
+  html[data-album-dir="next"]::view-transition-old(album-photo) { animation: album-out-left .28s ease-in both; }
+  html[data-album-dir="next"]::view-transition-new(album-photo) { animation: album-in-right .4s cubic-bezier(.2, .8, .2, 1) both; }
+  html[data-album-dir="prev"]::view-transition-old(album-photo) { animation: album-out-right .28s ease-in both; }
+  html[data-album-dir="prev"]::view-transition-new(album-photo) { animation: album-in-left .4s cubic-bezier(.2, .8, .2, 1) both; }
+  @keyframes album-out-left { to { opacity: 0; transform: translateX(-6%); } }
+  @keyframes album-out-right { to { opacity: 0; transform: translateX(6%); } }
+  @keyframes album-in-right { from { opacity: 0; transform: translateX(6%); } }
+  @keyframes album-in-left { from { opacity: 0; transform: translateX(-6%); } }
+}
+
+/* 島嶼狂想曲 */
+.comic { display: grid; gap: 24px 40px; align-items: center; margin: 8px 0 48px; }
+.comic__covers { position: relative; height: 300px; max-width: 420px; }
+.comic__covers img { position: absolute; top: 0; width: 190px; border-radius: 4px; box-shadow: 0 12px 24px rgba(30, 43, 69, .28); transition: transform .9s cubic-bezier(.16, 1, .3, 1); }
+.comic__covers img:first-child { left: 0; transform: rotate(-6deg); }
+.comic__covers img:last-child { left: 150px; top: 24px; transform: rotate(5deg); }
+.comic:hover .comic__covers img:first-child { transform: rotate(-9deg) translateX(-10px); }
+.comic:hover .comic__covers img:last-child { transform: rotate(8deg) translateX(14px); }
+.comic__title { font: 700 1.5rem/1.35 var(--font-hand); margin: 0 0 8px; }
+.comic__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+@media (min-width: 800px) { .comic { grid-template-columns: 420px 1fr; } }
+@media (max-width: 420px) { .comic__covers { height: 250px; } .comic__covers img { width: 150px; } .comic__covers img:last-child { left: 120px; } }
+@media (prefers-reduced-motion: reduce) { .comic__covers img { transition: none; } }
+
+/* pressed feel */
+.btn:active, .chip:active { transform: scale(.97); }
+.postcard__open:active { transform: rotate(0) translateY(-2px) scale(.985); }
+
+/* load: the logo lands like a stamp, the line and buttons follow, the photo settles */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__photo { animation: hero-settle 1.8s cubic-bezier(.16, 1, .3, 1) both; }
+  .hero__logo { animation: hero-stamp .9s cubic-bezier(.16, 1, .3, 1) .15s both; }
+  .hero__line span { animation: hero-rise .8s cubic-bezier(.16, 1, .3, 1) both; }
+  .hero__line span:nth-child(1) { animation-delay: .55s; }
+  .hero__line span:nth-child(2) { animation-delay: .7s; }
+  .hero__actions { animation: hero-rise .8s cubic-bezier(.16, 1, .3, 1) .9s both; }
+  @keyframes hero-settle { from { transform: scale(1.08); } }
+  @keyframes hero-stamp { 0% { opacity: 0; transform: scale(1.3) rotate(-7deg); } 60% { opacity: 1; } }
+  @keyframes hero-rise { from { opacity: 0; transform: translateY(18px); } }
+}
+
+/* scroll reveal (reveal.js sets data-reveal; .js is set in <head>) */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    transition: opacity .8s cubic-bezier(.16, 1, .3, 1), transform 1.1s cubic-bezier(.16, 1, .3, 1);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+  .js [data-reveal="rise"]:not(.is-in) { opacity: 0; transform: translateY(28px); }
+  /* the clip goes on the child: a clipped target never counts as intersecting */
+  .js [data-reveal="photo"]:not(.is-in) { opacity: 0; transform: translateY(20px) scale(1.03); }
+  .js [data-reveal="photo"] > img, .js [data-reveal="photo"] > iframe { transition: clip-path 1.2s cubic-bezier(.16, 1, .3, 1); transition-delay: calc(var(--i, 0) * 90ms + 80ms); }
+  .js [data-reveal="photo"]:not(.is-in) > img, .js [data-reveal="photo"]:not(.is-in) > iframe { clip-path: inset(0 0 100% 0); }
+  .js [data-reveal="pin"]:not(.is-in) { opacity: 0; transform: translateY(-44px) rotate(-6deg) scale(1.04); }
+  .js [data-reveal="pin"]:nth-child(even):not(.is-in) { transform: translateY(-44px) rotate(5deg) scale(1.04); }
+  .js [data-reveal="fan"] { transition: none; }
+  .js [data-reveal="fan"]:not(.is-in) .comic__covers img { transform: translateX(70px) rotate(0); opacity: 0; }
+  .js [data-reveal="fan"]:not(.is-in) .comic__text { opacity: 0; transform: translateY(24px); }
+  .comic__covers img { transition: transform .9s cubic-bezier(.16, 1, .3, 1), opacity .6s; }
+  .comic__covers img:last-child { transition-delay: .12s; }
+  .comic__text { transition: opacity .8s cubic-bezier(.16, 1, .3, 1) .25s, transform 1s cubic-bezier(.16, 1, .3, 1) .25s; }
+}
+
+/* 第二季主持人播出前保密：劇照位置先留空 */
+.season__sealed { margin: 32px 0 0; padding: 72px 16px; border: 1px dashed currentColor; opacity: .6; text-align: center; letter-spacing: .3em; font-size: 1.125rem; }
+
+.foot__links a { color: inherit; text-underline-offset: 3px; }
+.foot__links a:hover { color: var(--rice, #F0B23E); }
+
+/* song map panel: the episode's photos */
+.panel__photos { margin: 0 0 14px; }
+.panel__photo { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; background: rgba(30, 43, 69, .08); }
+.panel__thumbs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; margin-top: 6px; }
+.panel__thumbs:has(> :nth-child(3):last-child), .panel__thumbs:has(> :nth-child(4):last-child) { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.panel__thumb { padding: 0; border: 0; background: none; cursor: pointer; border-radius: 3px; opacity: .6; transition: opacity .2s; outline-offset: 2px; }
+.panel__thumb img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 3px; }
+.panel__thumb:hover, .panel__thumb[aria-current="true"] { opacity: 1; }
+.panel__thumb[aria-current="true"] { box-shadow: 0 0 0 2px var(--ink); }
+.panel__album { display: inline-block; margin-left: 12px; font-weight: 700; color: var(--ink); text-underline-offset: 3px; }

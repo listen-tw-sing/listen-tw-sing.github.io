@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 8 212 196" fill="none" stroke="#f0b23e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+  <title>第 58 屆金鐘獎 GBA58</title>
+  <!-- emblem: the Golden Bell in a double ring, line-drawn from the GBA58 identity -->
+  <g id="emblem" stroke-width="2">
+    <ellipse cx="115.5" cy="106" rx="100.5" ry="93.5"/>
+    <circle cx="115.5" cy="104" r="88"/>
+    <!-- bell mouth -->
+    <path d="M57 177 Q115.5 159 174 177"/>
+    <!-- crown -->
+    <path d="M102 25 H128 V40 H102 Z M108 40 V47 M122 40 V47"/>
+    <path d="M111 30 H119 V38 H111 Z"/>
+    <!-- body -->
+    <path d="M75 47 H156 L172 173 M75 47 L59 173"/>
+    <path d="M74 56 H157"/>
+    <path d="M67 124 H164"/>
+    <path d="M73 72 H109 M122 72 H158 M72 85 H108 M123 85 H160 M70 97 H106 M125 97 H161 M69 110 H104 M127 110 H163" stroke-width="1.1"/>
+    <!-- ladder -->
+    <path d="M113 56 L102 124 M118 56 L129 124"/>
+    <path d="M112 62 H119 M111 68 H120 M110 74 H121 M109 80 H122 M108 86 H123 M107 92 H124 M106 98 H125 M105 104 H126 M104 110 H127 M103 116 H128" stroke-width="1.2"/>
+    <!-- dots -->
+    <g fill="#f0b23e" stroke="none">
+      <circle cx="84" cy="65" r="1.9"/><circle cx="93" cy="65" r="1.9"/><circle cx="102" cy="65" r="1.9"/>
+      <circle cx="129" cy="65" r="1.9"/><circle cx="138" cy="65" r="1.9"/><circle cx="147" cy="65" r="1.9"/>
+      <circle cx="82" cy="91" r="1.9"/><circle cx="91" cy="91" r="1.9"/><circle cx="100" cy="91" r="1.9"/>
+      <circle cx="131" cy="91" r="1.9"/><circle cx="140" cy="91" r="1.9"/><circle cx="149" cy="91" r="1.9"/>
+      <circle cx="80" cy="117" r="1.9"/><circle cx="89" cy="117" r="1.9"/><circle cx="98" cy="117" r="1.9"/>
+      <circle cx="133" cy="117" r="1.9"/><circle cx="142" cy="117" r="1.9"/><circle cx="151" cy="117" r="1.9"/>
+    </g>
+    <!-- zigzag bands: Z on the left, mirrored on the right -->
+    <path d="M81 75.5 H87 L81 81.5 H87 M90 75.5 H96 L90 81.5 H96 M135 75.5 H141 L135 81.5 H141 M144 75.5 H150 L144 81.5 H150" stroke-width="1.3"/>
+    <path d="M79 100.5 H85 L79 106.5 H85 M88 100.5 H94 L88 106.5 H94 M137 100.5 H143 L137 106.5 H143 M146 100.5 H152 L146 106.5 H152" stroke-width="1.3"/>
+    <!-- base ornament: meander panel on stepped feet -->
+    <path d="M83 131 H148 V158 H156 V167 M83 131 V158 H75 V167" stroke-width="1.6"/>
+    <path d="M115.5 131 V167" stroke-width="1.3"/>
+    <path d="M88 136 H111 L93 151 H103 M143 136 H120 L138 151 H128" stroke-width="1.3"/>
+    <path d="M88 142 V162 H106 L115.5 153 L125 162 H143 V142" stroke-width="1.3"/>
+    <path d="M115.5 140 V150 M110.5 145 H120.5" stroke-width="1.3"/>
+    <path d="M80 162 H74 M151 162 H157" stroke-width="1.3"/>
+  </g>
+  <!-- wordmark: monoline geometric, cap height 150 -->
+  <g id="wordmark">
+    <path d="M404 62 A75 75 0 1 0 410 150 V120 H366"/>
+    <path d="M437 40 V190 M437 40 H459 A32.5 32.5 0 0 1 459 105 H437 M437 105 H461 A42.5 42.5 0 0 1 461 190 H437"/>
+    <path d="M505 190 L533 40 L561 190 M511 156 H555"/>
+    <path d="M656 42 H592 L589 108 A41 41 0 1 1 586 168"/>
+    <circle cx="721" cy="75" r="34"/>
+    <circle cx="721" cy="149" r="41"/>
+  </g>
+</svg>
