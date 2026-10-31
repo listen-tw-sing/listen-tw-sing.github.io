@@ -208,6 +208,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .halo { transform-box: fill-box; transform-origin: center; pointer-events: none; opacity: .3; transform: scale(1.8); transition: opacity .3s; }
 .halo--s1 { fill: var(--sea); }
 .halo--walk { fill: var(--tea); }
+.pin-label { pointer-events: none; }
+.pin-label rect { fill: var(--ink); }
+.pin-label text { fill: #fff; font-size: 22px; font-weight: 700; letter-spacing: .04em; }
+.pin-label--s1 rect { stroke: var(--sea); stroke-width: 3; }
+.pin-label--walk rect { stroke: var(--tea); stroke-width: 3; }
+@media (prefers-reduced-motion: no-preference) {
+  .pin-label.is-in { animation: tag-in .35s cubic-bezier(.2, .8, .3, 1) both; }
+  @keyframes tag-in { from { opacity: 0; } to { opacity: 1; } }
+}
 
 /* map motion: songbook page turn */
 .panel { view-transition-name: panel; }

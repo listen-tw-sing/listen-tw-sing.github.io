@@ -140,9 +140,29 @@
     }
   }
 
+  /* ---------- the chosen place's name beside its pin (on a phone the panel is a screen further down) ---------- */
+  var tag = svgEl('g', { 'class': 'pin-label', 'aria-hidden': 'true' });
+  var tagBox = svgEl('rect', { rx: 8, height: 38 });
+  var tagText = svgEl('text', { 'dominant-baseline': 'central' });
+  tag.appendChild(tagBox); tag.appendChild(tagText);
+  function label(p, e) {
+    var c = centre(p), GAP = 18, PAD = 12;
+    tagText.textContent = e.place;
+    tag.setAttribute('class', 'pin-label pin-label--' + e.season);
+    svg.appendChild(tag);                       // last child: above the pins and ripples
+    var w = tagText.getComputedTextLength() + PAD * 2;
+    var vb = svg.viewBox.baseVal;
+    var right = c[0] + GAP + w <= vb.width - 6;  // right of the pin unless that runs off the map
+    var x = right ? c[0] + GAP : c[0] - GAP - w;
+    var y = Math.max(4, Math.min(vb.height - 42, c[1] - 19));
+    tagBox.setAttribute('x', x); tagBox.setAttribute('y', y); tagBox.setAttribute('width', w);
+    tagText.setAttribute('x', x + PAD); tagText.setAttribute('y', y + 19);
+    tag.classList.remove('is-in'); void tag.getBoundingClientRect(); tag.classList.add('is-in');
+  }
+
   /* ---------- the episode's six photos: one large, the rest as thumbnails that swap in ---------- */
   // the map has its own six per episode (assets/img/map/), none of them used in the album
-  var IMG_V = 'm3';
+  var IMG_V = 'm4';
   var COUNT = {};   // photos per episode when not six
   function photo(e, k, small) {
     return 'assets/img/map/ep' + pad(e.ep) + '-' + k + (small ? '-s' : '') + '.webp?v=' + IMG_V;
@@ -214,6 +234,7 @@
         p.parentNode.appendChild(p);
         if (focused) p.focus();
         ripple(p, e.season);
+        label(p, e);
       }
     });
     if (animate && !reduce && document.startViewTransition) {
